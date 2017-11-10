@@ -1,0 +1,25 @@
+# Like the datacenters sample, here is the cluster data to put in a - infrastructure-tree-flat.yml
+# - infrastructure-tree-flat.yml ---------------------------
+clusters:
+
+  - { name: 'mycluster1', datacenter: 'Datacenter1',          enable_drs: 'yes', present: 'present' }
+  - { name: 'mycluster2', datacenter: 'Datacenter2',   enable_drs: 'yes', present: 'present' }
+
+-----------------------------------------------------------
+Ansible code : 
+-----------------------------------------------------------
+
+    - name: Create Clusters
+      vmware_cluster:
+        hostname: "{{ vcenter_name }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        datacenter_name: "{{item.datacenter}}"
+        cluster_name: "{{item.name}}"
+        enable_ha: yes
+        enable_drs: "{{item.enable_drs}}"
+        enable_vsan: no
+        validate_certs: "{{ vcenter_validate_certs }}"
+        state: "{{item.present}}"
+      with_items: "{{ clusters }}"
+
