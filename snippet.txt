@@ -1,4 +1,4 @@
-# Like the datacenters sample, here is the cluster data to put in a - infrastructure-tree-flat.yml
+# Like the datacenters sample, here is the cluster data to put in a 
 # - infrastructure-tree-flat.yml ---------------------------
 clusters:
 
